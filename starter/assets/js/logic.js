@@ -1,7 +1,7 @@
 // Set Variables.
 var timer;
 var timeLeft = 100;
-var qIndex = 0;
+var quizIndex = 0;
 
 var questionsDiv = document.getElementById("questions");
 var startButton = document.getElementById("start");
@@ -21,7 +21,7 @@ function startQuiz(){
    questionsDiv.removeAttribute("class");
    timer = setInterval(oneSecondclockHandler, 1000);
    timeEl.textContent = timeLeft;
-   showNextQuestion();
+   NextQuestion();
 
 }
 // create a function for the timer
@@ -30,8 +30,8 @@ function oneSecondclockHandler(){
     timeEl.textContent = timeLeft;
 }
 // create function for questions to allow the next question show on click
-function showNextQuestion(){
-var presentQuestion = questions[qIndex];
+function NextQuestion(){
+var presentQuestion = questions[quizIndex];
 
 questionEl.textContent = presentQuestion.q;
 
@@ -50,9 +50,9 @@ presentQuestion.ansChoices.forEach(function(option, i) {
     
 })
 }
-
+//call a function anschoiceclick to set the values of the selected options 'correct!! or incorrect!!'
 function ansChoiceClick(){
-  if(this.value !== questions[qIndex].answer){
+  if(this.value !== questions[quizIndex].answer){
     timeLeft -= 10;
 
     if(timeLeft <0){
@@ -70,12 +70,12 @@ function ansChoiceClick(){
     feedbackEl.setAttribute("class", "feedback hide");
   }, 1000);
 
-  qIndex ++;
+  quizIndex ++;
 
-  if(qIndex === questions.length){
+  if(quizIndex === questions.length){
     endQuiz();
   } else {
-    showNextQuestion();
+    NextQuestion();
   }
 }
 

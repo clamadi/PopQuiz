@@ -10,7 +10,7 @@ const MAX_HIGH_SCORES = 100;
 
 finalScore.innerText = mostRecentScore;
 
-EnterInitials.addEventListener('keyright', () => {
+EnterInitials.addEventListener('keyleft', () => {
     Submitbutton.disabled = !EnterInitials.value;
 });
 
